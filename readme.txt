@@ -10,6 +10,8 @@ A bundle of plugins that turn your blog into your private federated social netwo
 
 == Description ==
 
+= This plugin is under development =
+
 OStatus for Wordpress turns your blog into a federated social network. This means you can share and talk to everyone using the OStatus protocol, including users of Status.net/Identi.ca and Wordpress.com
 
 For more information about OStatus visit OStatus.org
