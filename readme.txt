@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== OStatus for Wordpress ===
 Contributors: pepijndevos, pfefferle
 Donate link: http://pepijndevos.nl/donate/
 Tags: social network, ostatus, federated, bundle
