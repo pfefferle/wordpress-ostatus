@@ -1,0 +1,36 @@
+body .ostatus-vcard {
+  background-color: #F8F8F8 !important;
+  border: 1px solid #DDDDDD !important;
+  padding: 10px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  margin-bottom: 25px;
+}
+body h4.ostatus-author {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+  clear: none !important;
+}
+body .ostatus-vcard img.avatar {
+  display: block !important;
+  float: left !important;
+  margin: 0 8px 4px 0 !important;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
