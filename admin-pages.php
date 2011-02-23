@@ -24,6 +24,9 @@ class OstatusAdminPages {
    */
   function addMenuItem() {
     add_options_page('OStatus', 'OStatus', 10, 'ostatus', array('OstatusAdminPages', 'showSettings'));
+
+    add_menu_page('OStatus',  'OStatus', 1, 'ostatus', '', WP_PLUGIN_URL.'/ostatus-for-wordpress/static/ostatus_icon.png');
+    add_submenu_page( 'ostatus', 'OStatus', 'OStatus', 'manage_options', 'ostatus', array('OstatusAdminPages', 'showSettings'));
   }
 
   /**
@@ -60,7 +63,7 @@ class OstatusAdminPages {
     If there is a plugin available that already implements one of these standards, we will use/support it.
     If we are missing one, <a href="http://wordpress.org/tags/ostatus-for-wordpress" target="_blank">please let us know</a>.
     The installation is a bit painful, but we think it's much more <em>open style</em> ;)</p>
-<?php  
+<?php
     $plugins = array();
     $plugins[] = plugins_api('plugin_information', array('slug' => 'activitystream-extension'));
     $plugins[] = plugins_api('plugin_information', array('slug' => 'host-meta'));
@@ -70,7 +73,14 @@ class OstatusAdminPages {
     $plugins[] = plugins_api('plugin_information', array('slug' => 'webfinger'));
     $plugins[] = plugins_api('plugin_information', array('slug' => 'well-known'));
     
-    display_plugins_table($plugins);
+    // check wordpress version
+    if (get_bloginfo('version') <= 3.0) {
+      display_plugins_table($plugins);
+    } else {
+      $wp_list_table = _get_list_table('WP_Plugin_Install_List_Table');
+      $wp_list_table->items = $plugins;
+      $wp_list_table->display();
+    }
 ?>
     <h3>Settings</h3>
     <form method="post" action="?page=<?php echo $_REQUEST['page'] ?>">

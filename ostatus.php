@@ -4,7 +4,7 @@ Plugin Name: OStatus for WordPress
 Plugin URI: http://wordpress.org/tags/ostatus-for-wordpress
 Description: A bundle of plugins that turn your blog into your private federated social network.
 Author: Matthias Pfefferle
-Version: 1.1
+Version: 1.2
 Author URI: http://notizblog.org/
 */
 
@@ -12,10 +12,7 @@ add_action('webfinger_xrd', array('Ostatus', 'addWebfingerLinks'), 10, 1);
 add_action('host_meta_xrd', array('Ostatus', 'addHostMetaLinks'));
 add_action('loop_start', array('Ostatus', 'authorProfileHtml'));
 add_action('wp_print_styles', array('Ostatus', 'authorProfileCss'));
-
-if (function_exists('publish_to_hub')) {
-  add_action('publish_post', array('Ostatus', 'publishToHub'));
-}
+add_action('publish_post', array('Ostatus', 'publishToHub'));
 
 // Pre-2.6 compatibility
 if ( ! defined( 'WP_CONTENT_URL' ) )
@@ -59,12 +56,16 @@ class Ostatus {
    * 
    * @param int $post_id
    */
-  function publishToHub($post_id) {    
-    $post = get_post($post_id);
-    $feeds = array();
-    $feeds[] = get_author_feed_link( $post->post_author, 'atom' );
-
-    publish_to_hub($post_id, $feeds);
+  function publishToHub($post_id) {
+    if (function_exists('publish_to_hub')) {
+      $post = get_post($post_id);
+      $feeds = array();
+      $feeds[] = get_author_feed_link( $post->post_author, 'atom' );
+      
+      publish_to_hub(null, $feeds);
+    }
+    
+    return $post_id;
   }
   
   /**
