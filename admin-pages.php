@@ -14,7 +14,7 @@ if (is_admin() && $_GET['page'] == 'ostatus') {
 }
 
 /**
- * yiid admin panels
+ * OStatus admin panels
  *
  * @author Matthias Pfefferle
  */
