@@ -8,8 +8,8 @@ Version: 1.2
 Author URI: http://notizblog.org/
 */
 
-add_action('webfinger_xrd', array('Ostatus', 'addWebfingerLinks'), 10, 1);
-add_action('host_meta_xrd', array('Ostatus', 'addHostMetaLinks'));
+add_action('webfinger', array('Ostatus', 'addWebfingerLinks'), 10, 2);
+add_action('host_meta', array('Ostatus', 'addHostMetaLinks'));
 add_action('loop_start', array('Ostatus', 'authorProfileHtml'));
 add_action('wp_print_styles', array('Ostatus', 'authorProfileCss'));
 add_action('publish_post', array('Ostatus', 'publishToHub'));
@@ -38,17 +38,21 @@ class Ostatus {
   /**
    * adds the the atom links to the webfinger-xrd-file
    */
-  function addWebfingerLinks($user) {
+  function addWebfingerLinks($array, $user) {
     $link = get_author_feed_link( $user->ID, 'atom' );
-    echo '<Link rel="http://schemas.google.com/g/2010#updates-from" href="'.$link.'" type="application/atom+xml"/>';
+    
+    $array["links"][] = array("rel" => "http://schemas.google.com/g/2010#updates-from", "href" => $link, "type" => "application/atom+xml");
+    return $array;
   }
   
   /**
    * adds the the atom links to the host-meta-xrd-file
    */
-  function addHostMetaLinks() {
+  function addHostMetaLinks($array) {
     $link = get_feed_link( 'atom' );
-    echo '<Link rel="http://schemas.google.com/g/2010#updates-from" href="'.$link.'" type="application/atom+xml"/>';
+
+    $array["links"][] = array("rel" => "http://schemas.google.com/g/2010#updates-from", "href" => $link, "type" => "application/atom+xml");
+    return $array;
   }
   
   /**
