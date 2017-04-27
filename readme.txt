@@ -1,17 +1,17 @@
 === OStatus for Wordpress ===
 Contributors: pepijndevos, pfefferle
-Tags: social network, ostatus, federated, bundle
-Requires at least: 2.9
-Tested up to: 3.1
-Stable tag: 1.2
+Tags: social network, ostatus, federated, bundle, mastodon, gnu, social, status
+Requires at least: 4.5
+Tested up to: 4.7.4
+Stable tag: 2.0.0
 
 A bundle of plugins that turn your blog into your private federated social network.
 
 == Description ==
 
-This plugin is still under development!
-
 OStatus for Wordpress turns your blog into a federated social network. This means you can share and talk to everyone using the OStatus protocol, including users of Status.net/Identi.ca and Wordpress.com
+
+The Plugin is compatible to Mastodon, gnu.social and Status.NET.
 
 For more information about OStatus visit [OStatus.org](http://ostatus.org "OStatus.org")
 
@@ -19,8 +19,7 @@ This plugin bundles a few other plugins it requires to work, theses are installe
 
 The plugin requires:
 
- * the `PubSubHubBub`-plugin (by Josh Fraser): http://wordpress.org/extend/plugins/pubsubhubbub/
- * the `/.well-known/`-plugin: http://wordpress.org/extend/plugins/well-known/
+ * the `PubSubHubBub`-plugin: http://wordpress.org/extend/plugins/pubsubhubbub/
  * the `host-meta`-plugin: http://wordpress.org/extend/plugins/host-meta/
  * the `webfinger`-plugin: http://wordpress.org/extend/plugins/webfinger/
  * the `Salmon`-plugin: http://wordpress.org/extend/plugins/salmon/
@@ -33,23 +32,29 @@ The plugin requires:
 1. Check all the needed plugins are there and activated through the settings-page
 
 == Frequently Asked Questions ==
+
 = can I help you? =
 yes please!
 
 == Changelog ==
+
 = 1.2 =
 * WordPress 3.1 support
+
 = 1.1 =
 * added functionality
+
 = 1.0 =
 * initial version
 
 == Upgrade Notice ==
+
 nothing to fear
 
 == Helping out ==
 
 You can help!
+
 This plugin bundles a few plugins theta implement parts of the OStatus specification.
 
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
