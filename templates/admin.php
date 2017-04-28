@@ -1,9 +1,10 @@
 <?php
-require_once( ABSPATH . 'wp-admin/admin.php' );
 require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 wp_enqueue_style( 'plugin-install' );
 wp_enqueue_script( 'plugin-install' );
 add_thickbox();
+$GLOBALS['tab'] = 'custom';
+
 ?>
 <div class="wrap">
 	<h2>OStatus</h2>
@@ -28,11 +29,25 @@ add_thickbox();
 	The installation is a bit painful, but we think it's much more <em>open style</em> ;)</p>
 <?php
 $plugins = array();
-$plugins[] = plugins_api( 'plugin_information', array( 'slug' => 'activitystream-extension' ) );
-$plugins[] = plugins_api( 'plugin_information', array( 'slug' => 'host-meta' ) );
-$plugins[] = plugins_api( 'plugin_information', array( 'slug' => 'pubsubhubbub' ) );
-$plugins[] = plugins_api( 'plugin_information', array( 'slug' => 'salmon' ) );
-$plugins[] = plugins_api( 'plugin_information', array( 'slug' => 'webfinger' ) );
+
+$required_plugins = apply_filters( 'ostatus_required_plugins', array(
+	'activitystream-extension',
+	'host-meta',
+	'pubsubhubbub',
+	'salmon',
+	'webfinger',
+) );
+
+foreach ( $required_plugins as $plugin ) {
+	$plugins[] = plugins_api( 'plugin_information', array(
+		'slug' => $plugin,
+		'fields' => array(
+			'icons' => true,
+			'active_installs' => true,
+			'short_description' => true,
+		),
+	) );
+}
 
 // check wordpress version
 $wp_list_table = _get_list_table( 'WP_Plugin_Install_List_Table' );

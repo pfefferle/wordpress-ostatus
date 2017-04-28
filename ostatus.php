@@ -11,18 +11,22 @@
 add_action( 'init', array( 'Ostatus', 'init' ) );
 
 /**
- * ostatus class
+ * Ostatus class
  *
  * @author Matthias Pfefferle
  * @see http://ostatus.org
  */
 class Ostatus {
-	public static function init() {
-		add_action( 'webfinger', array( 'Ostatus', 'webfinger' ), 10, 2 );
-		add_action( 'host_meta', array( 'Ostatus', 'host_meta' ) );
 
-		add_action( 'atom_ns', array( 'Ostatus', 'add_poco_namespace' ) );
-		add_action( 'atom_head', array( 'Ostatus', 'add_global_author' ) );
+	/**
+	 * Initialize the plugin, registering WordPress hooks.
+	 */
+	public static function init() {
+		add_filter( 'webfinger', array( 'Ostatus', 'webfinger' ), 10, 2 );
+		add_filter( 'host_meta', array( 'Ostatus', 'host_meta' ) );
+
+		add_action( 'atom_ns', array( 'Ostatus', 'atom_add_poco_namespace' ) );
+		add_action( 'atom_head', array( 'Ostatus', 'atom_add_global_author' ) );
 		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
@@ -45,9 +49,9 @@ class Ostatus {
 	}
 
 	/**
-	 * adds the the atom links to the host-meta-xrd-file
+	 * Adds the the atom links to the host-meta-xrd-file
 	 */
-	function host_meta( $array ) {
+	public static function host_meta( $array ) {
 		$array['links'][] = array(
 			'rel' => 'http://schemas.google.com/g/2010#updates-from',
 			'href' => get_feed_link( 'ostatus' ),
@@ -59,13 +63,30 @@ class Ostatus {
 			'template' => site_url( '/?profile={uri}' ),
 		);
 
+		// add lrdd links if legacy plugin does not exists
+		if ( class_exists( 'WebFingerPlugin' ) && ! class_exists( 'WebFingerLegacy_Plugin' ) ) {
+			$array['links'][] = array(
+				'rel' => 'lrdd',
+				'template' => site_url( '/.well-known/webfinger?resource={uri}' ),
+				'type' => 'application/jrd+json',
+			);
+
+			$array['links'][] = array(
+				'rel' => 'lrdd',
+				'template' => site_url( '/.well-known/webfinger?resource={uri}' ),
+				'type' => 'application/json',
+			);
+		}
+
 		return $array;
 	}
 
 	/**
-	 * ping hubs
+	 * Ping hubs
 	 *
 	 * @param int $post_id
+	 *
+	 * @return int;
 	 */
 	public static function publish_to_hub( $feed ) {
 		if ( function_exists( 'publish_to_hub' ) ) {
@@ -79,7 +100,10 @@ class Ostatus {
 		return $post_id;
 	}
 
-	public static function add_poco_namespace() {
+	/**
+	 * Added PortableContacts namespace
+	 */
+	public static function atom_add_poco_namespace() {
 		if ( is_author() && is_feed( 'ostatus' ) ) {
 			echo 'xmlns:poco="http://portablecontacts.net/spec/1.0"' . PHP_EOL;
 			echo 'xmlns:media="http://purl.org/syndication/atommedia"' . PHP_EOL;
@@ -87,12 +111,18 @@ class Ostatus {
 		}
 	}
 
-	public static function add_global_author() {
+	/**
+	 * Add global author area to the OStatus Atom feed
+	 */
+	public static function atom_add_global_author() {
 		if ( is_author() && is_feed( 'ostatus' ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/atom-author.php' );
 		}
 	}
 
+	/**
+	 * Add admin menu entry
+	 */
 	public static function admin_menu() {
 		add_options_page(
 			'OStatus',
@@ -103,10 +133,16 @@ class Ostatus {
 		);
 	}
 
+	/**
+	 * Load settings page
+	 */
 	public static function settings_page() {
 		load_template( dirname( __FILE__ ) . '/templates/admin.php' );
 	}
 
+	/**
+	 * Register new atom feed
+	 */
 	public static function do_feed_ostatus( $for_comments ) {
 		if ( $for_comments ) {
 			load_template( ABSPATH . WPINC . '/feed-atom-comments.php' );
