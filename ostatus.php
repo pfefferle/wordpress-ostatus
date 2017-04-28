@@ -1,11 +1,15 @@
 <?php
 /**
- * Plugin Name: OStatus for WordPress
+ * Plugin Name: OStatus
  * Plugin URI: http://wordpress.org/tags/ostatus-for-wordpress
  * Description: A bundle of plugins that turn your blog into your private federated social network.
  * Author: Matthias Pfefferle
- * Version: 2.0.0-dev
  * Author URI: http://notiz.blog/
+ * License: MIT
+ * License URI: http://opensource.org/licenses/MIT
+ * Version: 2.0.0
+ * Text Domain: ostatus
+ * Domain Path: /languages
  */
 
 add_action( 'init', array( 'Ostatus', 'init' ) );
@@ -14,7 +18,7 @@ add_action( 'init', array( 'Ostatus', 'init' ) );
  * Ostatus class
  *
  * @author Matthias Pfefferle
- * @see http://ostatus.org
+ * @see https://www.w3.org/community/ostatus/
  */
 class Ostatus {
 

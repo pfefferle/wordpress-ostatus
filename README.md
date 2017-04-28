@@ -1,13 +1,13 @@
-=== OStatus for Wordpress ===
-Contributors: pepijndevos, pfefferle
-Tags: social network, ostatus, federated, bundle, mastodon, gnu, social, gnu.social, status.net
-Requires at least: 4.5
-Tested up to: 4.7.4
-Stable tag: 2.0.0
+# OStatus for Wordpress #
+**Contributors:** pepijndevos, pfefferle  
+**Tags:** social network, ostatus, federated, bundle, mastodon, gnu, social, gnu.social, status.net  
+**Requires at least:** 4.5  
+**Tested up to:** 4.7.4  
+**Stable tag:** 2.0.0  
 
 A bundle of plugins that turn your blog into your private federated social network.
 
-== Description ==
+## Description ##
 
 OStatus for Wordpress turns your blog into a federated social network. This means you can share and talk to everyone using the OStatus protocol, including users of Status.net/Identi.ca and Wordpress.com
 
@@ -25,38 +25,38 @@ The plugin requires:
 * the `Salmon`-plugin: http://wordpress.org/plugins/salmon/
 * the `ActivityStream extension`-plugin: http://wordpress.org/plugins/activitystream-extension/
 
-== Installation ==
+## Installation ##
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Check all the needed plugins are there and activated through the settings-page
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= can I help you? =
+### can I help you? ###
 yes please!
 
-== Changelog ==
+## Changelog ##
 
-= 2.0.0 =
+### 2.0.0 ###
 * Mastodon and gnu.social support
 * PHP 7 compatibility
 * small changes
 
-= 1.2 =
+### 1.2 ###
 * WordPress 3.1 support
 
-= 1.1 =
+### 1.1 ###
 * added functionality
 
-= 1.0 =
+### 1.0 ###
 * initial version
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 
 nothing to fear
 
-== Helping out ==
+## Helping out ##
 
 You can help!
 
