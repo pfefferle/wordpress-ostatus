@@ -8,8 +8,6 @@
  * Author URI: http://notiz.blog/
  */
 
-//include_once( 'inc/admin-pages.php' );
-
 add_action( 'init', array( 'Ostatus', 'init' ) );
 
 /**
@@ -25,6 +23,9 @@ class Ostatus {
 
 		add_action( 'atom_ns', array( 'Ostatus', 'add_poco_namespace' ) );
 		add_action( 'atom_head', array( 'Ostatus', 'add_global_author' ) );
+		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
+		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
+
 		add_action( 'publish_post', array( 'Ostatus', 'publish_to_hub' ) );
 
 		add_action( 'admin_menu', array( 'Ostatus', 'admin_menu' ) );
@@ -36,7 +37,7 @@ class Ostatus {
 	public static function webfinger( $array, $user ) {
 		$array['links'][] = array(
 			'rel' => 'http://schemas.google.com/g/2010#updates-from',
-			'href' => get_author_feed_link( $user->ID, 'atom' ),
+			'href' => get_author_feed_link( $user->ID, 'ostatus' ),
 			'type' => 'application/atom+xml',
 		);
 
@@ -47,11 +48,9 @@ class Ostatus {
 	 * adds the the atom links to the host-meta-xrd-file
 	 */
 	function host_meta( $array ) {
-		$link = get_feed_link( 'atom' );
-
 		$array['links'][] = array(
 			'rel' => 'http://schemas.google.com/g/2010#updates-from',
-			'href' => $link,
+			'href' => get_feed_link( 'ostatus' ),
 			'type' => 'application/atom+xml',
 		);
 
@@ -81,13 +80,15 @@ class Ostatus {
 	}
 
 	public static function add_poco_namespace() {
-		echo 'xmlns:poco="http://portablecontacts.net/spec/1.0"' . PHP_EOL;
-		echo 'xmlns:media="http://purl.org/syndication/atommedia"' . PHP_EOL;
-		echo 'xmlns:ostatus="http://ostatus.org/schema/1.0"' . PHP_EOL;
+		if ( is_author() && is_feed( 'ostatus' ) ) {
+			echo 'xmlns:poco="http://portablecontacts.net/spec/1.0"' . PHP_EOL;
+			echo 'xmlns:media="http://purl.org/syndication/atommedia"' . PHP_EOL;
+			echo 'xmlns:ostatus="http://ostatus.org/schema/1.0"' . PHP_EOL;
+		}
 	}
 
 	public static function add_global_author() {
-		if ( is_author() ) {
+		if ( is_author() && is_feed( 'ostatus' ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/atom-author.php' );
 		}
 	}
@@ -104,5 +105,13 @@ class Ostatus {
 
 	public static function settings_page() {
 		load_template( dirname( __FILE__ ) . '/templates/admin.php' );
+	}
+
+	public static function do_feed_ostatus( $for_comments ) {
+		if ( $for_comments ) {
+			load_template( ABSPATH . WPINC . '/feed-atom-comments.php' );
+		} else {
+			load_template( ABSPATH . WPINC . '/feed-atom.php' );
+		}
 	}
 }

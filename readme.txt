@@ -13,17 +13,17 @@ OStatus for Wordpress turns your blog into a federated social network. This mean
 
 The Plugin is compatible to Mastodon, gnu.social and Status.NET.
 
-For more information about OStatus visit [OStatus.org](http://ostatus.org "OStatus.org")
+For more information about OStatus visit the [OStatus Community Group](https://www.w3.org/community/ostatus/)
 
 This plugin bundles a few other plugins it requires to work, theses are installed automatically unless you have them already installed.
 
 The plugin requires:
 
- * the `PubSubHubBub`-plugin: http://wordpress.org/extend/plugins/pubsubhubbub/
- * the `host-meta`-plugin: http://wordpress.org/extend/plugins/host-meta/
- * the `webfinger`-plugin: http://wordpress.org/extend/plugins/webfinger/
- * the `Salmon`-plugin: http://wordpress.org/extend/plugins/salmon/
- * the `ActivityStream extension`-plugin: http://wordpress.org/extend/plugins/activitystream-extension/
+* the `PubSubHubBub`-plugin: http://wordpress.org/plugins/pubsubhubbub/
+* the `host-meta`-plugin: http://wordpress.org/plugins/host-meta/
+* the `webfinger`-plugin: http://wordpress.org/plugins/webfinger/
+* the `Salmon`-plugin: http://wordpress.org/plugins/salmon/
+* the `ActivityStream extension`-plugin: http://wordpress.org/plugins/activitystream-extension/
 
 == Installation ==
 
