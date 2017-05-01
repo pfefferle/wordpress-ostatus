@@ -8,7 +8,7 @@
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Version: 2.0.0
- * Text Domain: ostatus
+ * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
 
@@ -36,6 +36,7 @@ class Ostatus {
 
 		add_action( 'publish_post', array( 'Ostatus', 'publish_to_hub' ) );
 
+		add_action( 'admin_init', array( 'Ostatus', 'text_domain' ) );
 		add_action( 'admin_menu', array( 'Ostatus', 'admin_menu' ) );
 	}
 
@@ -122,6 +123,13 @@ class Ostatus {
 		if ( is_author() && is_feed( 'ostatus' ) ) {
 			load_template( dirname( __FILE__ ) . '/templates/atom-author.php' );
 		}
+	}
+
+	/**
+	 * Load plugin text domain
+	 */
+	public static function text_domain() {
+		load_plugin_textdomain( 'ostatus-for-wordoress' );
 	}
 
 	/**

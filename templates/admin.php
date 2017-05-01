@@ -7,26 +7,26 @@ $GLOBALS['tab'] = 'custom';
 
 ?>
 <div class="wrap">
-	<h2><?php _e( 'OStatus', 'ostatus' ); ?></h2>
+	<h2><?php esc_html_e( 'OStatus', 'ostatus-for-wordpress' ); ?></h2>
 
-	<p><strong><?php _e( 'OStatus for WordPress turns your blog into a federated social network.
+	<p><strong><?php esc_html_e( 'OStatus for WordPress turns your blog into a federated social network.
 	This means you can share and talk to everyone using the OStatus protocol,
-	including users of Status.net and Identi.ca', 'ostatus' ); ?></strong></p>
+	including users of Status.net and Identi.ca', 'ostatus-for-wordpress' ); ?></strong></p>
 
-	<p><?php _e( 'Some Links:', 'ostatus' ); ?>
+	<p><?php esc_html_e( 'Some Links:', 'ostatus-for-wordpress' ); ?>
 		<ul>
-			<li><a href="https://www.w3.org/community/ostatus/" target="_blank"><?php _e( 'w3.org community page', 'ostatus' ); ?></a></li>
-			<li><a href="https://www.w3.org/community/ostatus/wiki/Howto" target="_blank"><?php _e( 'How to OStatus-enable Your Application', 'ostatus' ); ?></a></li>
-			<li><a href="https://github.com/pfefferle/wordpress-ostatus/issues" target="_blank"><?php _e( 'Give us feedback', 'ostatus' ); ?></a></li>
+			<li><a href="https://www.w3.org/community/ostatus/" target="_blank"><?php esc_html_e( 'w3.org community page', 'ostatus-for-wordpress' ); ?></a></li>
+			<li><a href="https://www.w3.org/community/ostatus/wiki/Howto" target="_blank"><?php esc_html_e( 'How to OStatus-enable Your Application', 'ostatus-for-wordpress' ); ?></a></li>
+			<li><a href="https://github.com/pfefferle/wordpress-ostatus/issues" target="_blank"><?php esc_html_e( 'Give us feedback', 'ostatus-for-wordpress' ); ?></a></li>
 		</ul>
 	</p>
 
-	<h3><?php _e( 'Dependencies', 'ostatus' ); ?></h3>
+	<h3><?php esc_html_e( 'Dependencies', 'ostatus-for-wordpress' ); ?></h3>
 
 	<p><?php _e( 'OStatus is like a <em>Best of OpenWeb Standards</em> and so is this plugin.
 	If there is a plugin available that already implements one of these standards, we will use/support it.
 	If we are missing one, <a href="https://github.com/pfefferle/wordpress-ostatus/issues" target="_blank">please let us know</a>.
-	The installation is a bit painful, but we think it\'s much more <em>open style</em> ;)', 'ostatus' ); ?></p>
+	The installation is a bit painful, but we think it\'s much more <em>open style</em> ;)', 'ostatus-for-wordpress' ); ?></p>
 <?php
 $plugins = array();
 
