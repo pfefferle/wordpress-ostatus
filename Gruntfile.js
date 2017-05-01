@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           mainFile: 'ostatus.php',
           domainPath: '/languages',
           exclude: ['bin/.*', '.git/.*', 'vendor/.*'],
-          potFilename: 'wordpress-ostatus.pot',
+          potFilename: 'ostatus-for-wordpress.pot',
           type: 'wp-plugin',
           updateTimestamp: true
         }
