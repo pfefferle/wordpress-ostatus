@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: OStatus
- * Plugin URI: http://wordpress.org/tags/ostatus-for-wordpress
+ * Plugin URI: https://github.com/pfefferle/wordpress-ostatus
  * Description: A bundle of plugins that turn your blog into your private federated social network.
  * Author: Matthias Pfefferle
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.0.0
+ * Version: 2.0.1
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -26,7 +26,7 @@ class Ostatus {
 	 * Initialize the plugin, registering WordPress hooks.
 	 */
 	public static function init() {
-		add_filter( 'webfinger', array( 'Ostatus', 'webfinger' ), 10, 2 );
+		add_filter( 'webfinger_user_data', array( 'Ostatus', 'webfinger' ), 10, 3 );
 		add_filter( 'host_meta', array( 'Ostatus', 'host_meta' ) );
 
 		add_action( 'atom_ns', array( 'Ostatus', 'atom_add_poco_namespace' ) );
@@ -43,11 +43,16 @@ class Ostatus {
 	/**
 	 * adds the the atom links to the webfinger-xrd-file
 	 */
-	public static function webfinger( $array, $user ) {
+	public static function webfinger( $array, $resource, $user ) {
 		$array['links'][] = array(
 			'rel' => 'http://schemas.google.com/g/2010#updates-from',
 			'href' => get_author_feed_link( $user->ID, 'ostatus' ),
 			'type' => 'application/atom+xml',
+		);
+
+		$array['links'][] = array(
+			'rel' => 'http://ostatus.org/schema/1.0/subscribe',
+			'template' => site_url( '/?profile={uri}' ),
 		);
 
 		return $array;
@@ -129,7 +134,7 @@ class Ostatus {
 	 * Load plugin text domain
 	 */
 	public static function text_domain() {
-		load_plugin_textdomain( 'ostatus-for-wordoress' );
+		load_plugin_textdomain( 'ostatus-for-wordpress' );
 	}
 
 	/**
@@ -149,7 +154,7 @@ class Ostatus {
 	 * Load settings page
 	 */
 	public static function settings_page() {
-		load_template( dirname( __FILE__ ) . '/templates/admin.php' );
+		load_template( dirname( __FILE__ ) . '/templates/settings-page.php' );
 	}
 
 	/**

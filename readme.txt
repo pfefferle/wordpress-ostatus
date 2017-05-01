@@ -1,9 +1,9 @@
-=== OStatus for Wordpress ===
+=== OStatus ===
 Contributors: pepijndevos, pfefferle
 Tags: social network, ostatus, federated, bundle, mastodon, gnu, social, gnu.social, status.net
 Requires at least: 4.5
 Tested up to: 4.7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 
 A bundle of plugins that turn your blog into your private federated social network.
 
@@ -37,6 +37,11 @@ The plugin requires:
 yes please!
 
 == Changelog ==
+
+= 2.0.1 =
+* some small improvements
+* fixed webfinger discovery
+* better i18n handling (thanks @hinaloe)
 
 = 2.0.0 =
 * Mastodon and gnu.social support

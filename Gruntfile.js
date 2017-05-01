@@ -11,9 +11,9 @@ module.exports = function(grunt) {
     makepot: {
       target: {
         options: {
-          mainFile: 'ostatus.php',
+          mainFile: 'ostatus-for-wordpress.php',
           domainPath: '/languages',
-          exclude: ['bin/.*', '.git/.*', 'vendor/.*'],
+          exclude: ['bin/.*', '.git/.*', 'vendor/.*', 'node_modules/.*'],
           potFilename: 'ostatus-for-wordpress.pot',
           type: 'wp-plugin',
           updateTimestamp: true
