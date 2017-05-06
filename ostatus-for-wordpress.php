@@ -34,7 +34,7 @@ class Ostatus {
 		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
-		add_action( 'publish_post', array( 'Ostatus', 'publish_to_hub' ) );
+		add_filter( 'pubsubhubbub_feed_urls', array( 'Ostatus', 'pubsubhubbub_feed_urls' ), 10, 2 );
 
 		add_action( 'admin_init', array( 'Ostatus', 'text_domain' ) );
 		add_action( 'admin_menu', array( 'Ostatus', 'admin_menu' ) );
@@ -98,16 +98,11 @@ class Ostatus {
 	 *
 	 * @return int;
 	 */
-	public static function publish_to_hub( $feed ) {
-		if ( function_exists( 'publish_to_hub' ) ) {
-			$post = get_post( $post_id );
-			$feeds = array();
-			$feeds[] = get_author_feed_link( $post->post_author, 'atom' );
+	public static function pubsubhubbub_feed_urls( $feeds, $post_id ) {
+		$post = get_post( $post_id );
+		$feeds[] = get_author_feed_link( $post->post_author, 'ostatus' );
 
-			publish_to_hub( null, $feeds );
-		}
-
-		return $post_id;
+		return $feeds;
 	}
 
 	/**
