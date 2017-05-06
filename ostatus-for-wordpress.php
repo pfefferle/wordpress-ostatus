@@ -7,7 +7,7 @@
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.0.1
+ * Version: 2.1.0
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
