@@ -1,27 +1,45 @@
 === OStatus ===
 Contributors: pepijndevos, pfefferle
+Donate link: http://14101978.de
 Tags: social network, ostatus, federated, bundle, mastodon, gnu, social, gnu-social, status-net
 Requires at least: 4.5
 Tested up to: 4.7.4
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 
 A bundle of plugins that turn your blog into your private federated social network.
 
 == Description ==
 
-OStatus for Wordpress turns your blog into a federated social network. This means you can share and talk to everyone using the OStatus protocol, including users of Status.net/Identi.ca and Wordpress.com
-
-The Plugin is compatible to Mastodon, gnu.social and Status.NET.
+OStatus for Wordpress turns your blog into a federated social network. This means you can share and talk to everyone using the OStatus protocol, including users of Status.net/Identi.ca, gnu.social, Friendica and Mastodon.
 
 For more information about OStatus visit the [OStatus Community Group](https://www.w3.org/community/ostatus/)
 
 This plugin bundles a few other plugins it requires to work, theses are installed automatically unless you have them already installed.
 
-The plugin requires:
+Compatibility:
+
+* Mastodon
+	* [x] Follow blog
+	* [ ] Follow GNU.social
+	* [x] Share blog-posts
+	* [ ] Share GNU.social-posts
+	* [x] Share GNU.social-comments
+	* [ ] Share blog-comments
+* Mastodon
+	* [x] Follow blog
+	* [ ] Follow Mastodon
+	* [x] Share blog-posts
+	* [ ] Share Mastodon-posts
+	* [x] Share Mastodon-comments
+	* [ ] Share blog-comments
+* Friendica
+	* not tested yet
+
+Plugin requirements:
 
 * the `PubSubHubBub`-plugin: http://wordpress.org/plugins/pubsubhubbub/
 * the `host-meta`-plugin: http://wordpress.org/plugins/host-meta/
-* the `webfinger`-plugin: http://wordpress.org/plugins/webfinger/
+* the `WebFinger`-plugin: http://wordpress.org/plugins/webfinger/
 * the `Salmon`-plugin: http://wordpress.org/plugins/salmon/
 * the `ActivityStream extension`-plugin: http://wordpress.org/plugins/activitystream-extension/
 
@@ -37,6 +55,9 @@ The plugin requires:
 yes please!
 
 == Changelog ==
+
+= 2.2.0 =
+* better compatibility with mastodon
 
 = 2.1.0 =
 * some small tweaks

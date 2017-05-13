@@ -7,7 +7,7 @@
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.1.0
+ * Version: 2.2.0
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -26,11 +26,15 @@ class Ostatus {
 	 * Initialize the plugin, registering WordPress hooks.
 	 */
 	public static function init() {
+		require_once dirname( __FILE__ ) . '/includes/functions.php';
+
 		add_filter( 'webfinger_user_data', array( 'Ostatus', 'webfinger' ), 10, 3 );
 		add_filter( 'host_meta', array( 'Ostatus', 'host_meta' ) );
 
-		add_action( 'atom_ns', array( 'Ostatus', 'atom_add_poco_namespace' ) );
+		add_action( 'atom_ns', array( 'Ostatus', 'atom_add_namespaces' ) );
 		add_action( 'atom_head', array( 'Ostatus', 'atom_add_global_author' ) );
+		add_action( 'atom_author', array( 'Ostatus', 'atom_add_entry_author' ) );
+
 		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
@@ -108,11 +112,11 @@ class Ostatus {
 	/**
 	 * Added PortableContacts namespace
 	 */
-	public static function atom_add_poco_namespace() {
+	public static function atom_add_namespaces() {
 		if ( is_author() && is_feed( 'ostatus' ) ) {
-			echo 'xmlns:poco="http://portablecontacts.net/spec/1.0"' . PHP_EOL;
-			echo 'xmlns:media="http://purl.org/syndication/atommedia"' . PHP_EOL;
-			echo 'xmlns:ostatus="http://ostatus.org/schema/1.0"' . PHP_EOL;
+			echo 'xmlns:poco="http://portablecontacts.net/spec/1.0/"' . PHP_EOL;
+			echo 'xmlns:media="http://purl.org/syndication/atommedia/"' . PHP_EOL;
+			echo 'xmlns:ostatus="http://ostatus.org/schema/1.0/"' . PHP_EOL;
 		}
 	}
 
@@ -121,7 +125,16 @@ class Ostatus {
 	 */
 	public static function atom_add_global_author() {
 		if ( is_author() && is_feed( 'ostatus' ) ) {
-			load_template( dirname( __FILE__ ) . '/templates/atom-author.php' );
+			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus-author.php' );
+		}
+	}
+
+	/**
+	 * Extend entry author of the OStatus Atom feed
+	 */
+	public static function atom_add_entry_author() {
+		if ( is_author() && is_feed( 'ostatus' ) ) {
+			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus-entry-author.php' );
 		}
 	}
 
