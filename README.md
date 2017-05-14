@@ -1,11 +1,12 @@
 # OStatus #
 **Contributors:** pepijndevos, pfefferle  
-**Tags:** social network, ostatus, federated, bundle, mastodon, gnu, social, gnu-social, status-net  
+**Donate link:** http://14101978.de  
+**Tags:** ostatus, federated, mastodon, social, gnusocial, statusnet  
 **Requires at least:** 4.5  
 **Tested up to:** 4.7.4  
 **Stable tag:** 2.2.0  
 
-A bundle of plugins that turn your blog into your private federated social network.
+A bundle of plugins that turns your blog into your private federated social network.
 
 ## Description ##
 
