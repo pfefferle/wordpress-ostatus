@@ -38,6 +38,8 @@ class Ostatus {
 		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
+		add_action( 'atom_head', array( 'Ostatus', 'add_ostatus_link_tag' ) );
+
 		add_filter( 'pubsubhubbub_feed_urls', array( 'Ostatus', 'pubsubhubbub_feed_urls' ), 10, 2 );
 
 		add_action( 'admin_init', array( 'Ostatus', 'text_domain' ) );
@@ -173,6 +175,21 @@ class Ostatus {
 			load_template( ABSPATH . WPINC . '/feed-atom-comments.php' );
 		} else {
 			load_template( ABSPATH . WPINC . '/feed-atom.php' );
+		}
+	}
+
+	/**
+	 * Add hub-<link> to the ostatus feed
+	 */
+	public static function add_ostatus_link_tag() {
+		if ( ! is_feed( 'ostatus' ) or ! function_exists( 'pubsubhubbub_get_hubs' ) ) {
+			return;
+		}
+
+		$hub_urls = pubsubhubbub_get_hubs();
+
+		foreach ( $hub_urls as $hub_url ) {
+			printf( '<link rel="hub" href="%s" />', $hub_url ) . PHP_EOL;
 		}
 	}
 }
