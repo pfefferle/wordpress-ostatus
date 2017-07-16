@@ -7,10 +7,13 @@
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.2.1
+ * Version: 2.2.2
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
+
+// support the legacy WebFinger specs
+define( 'WEBFINGER_LEGACY', true );
 
 add_action( 'init', array( 'Ostatus', 'init' ) );
 

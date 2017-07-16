@@ -1,0 +1,39 @@
+language: php
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+php:
+  - 5.6
+  - 7
+
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
+
+env:
+  matrix:
+    - WP_VERSION=latest WP_MULTISITE=0
+    - WP_VERSION=nightly WP_MULTISITE=0
+
+  global:
+    - SVN_REPO: https://plugins.svn.wordpress.org/ostatus-for-wordpress/
+    - GH_REF: https://github.com/pfefferle/wordpress-ostatus.git
+    - secure: "BYrX7r4C+WuDaJddrfJPqMkMOsX1oU2Jdk5VznRnITpeH+i6zayXNBA9G+p7n68CnolpLkEFbhW9YcgrHvVOIZD6J/MaX9P8R/NK7p5pV4X8p+qa9Z3VriPLAhwNc/1A61+34hIQCCW9JSmcYCuT7fEhX/brhlrzHxPPdFqPZOfU/UacObrP9eV3/vInTWgrLH8wdXDC4JUNAmWA6V1ILfWH29tlc3O/M81RCCX3Np3fRWu15dLiN/8fAQZ9ItEhMs47HOcEpKOtZal/tzcV2pHUbXZsO73/NpuRLcASGHMZwBqyZaRG1CnfFo7bEBveZeCI0AVfIQ5mrn/3pt4mIrHMf20wamlfU9fR//MWGTUgn0JplZFvgG/cKF4KUpqfp5eSBlxTxyAWM8HJVd00hAVPDQbkYCRwxa5Q9T4tzIq0djKejrER6/p9xvTdO7S6cUfT7u48zsN6oil7hjfcix2WKyv0SOV2jHMXARvT/gb2Viq4a3YGFFVvcuiBLJS54GJmxsqcChhC8e+mXM5pn+sCeu4fFflLyERSFQdmktOyE3fz+zhxjl3fEFP1jBT3GpxkdQpde+HQKLaeTNJMGtgLuInR9mmp+5c83IpL6N4a3aHW1u7hhY+HVMMtKkvE6J2zTwIATJs5siUlATO8YJcFUAufVJPfa7CeZpY40uY="
+
+matrix:
+  include:
+    - php: 5.6
+      env: WP_VERSION=latest WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
+
+before_script:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - |
+    if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then
+      composer global require "phpunit/phpunit=5.7.*"
+    elif [[ ${TRAVIS_PHP_VERSION:0:3} != "5.2" ]]; then
+      composer global require "phpunit/phpunit=4.8.*"
+    fi
+  - bash bin/install-wp-tests.sh wordpress root '' localhost $WP_VERSION
+
+script: phpunit
