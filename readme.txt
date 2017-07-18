@@ -4,7 +4,7 @@ Tags: ostatus, federated, mastodon, social, gnusocial, statusnet
 Donate link: http://14101978.de
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -43,7 +43,7 @@ Plugin requirements:
 * the `host-meta`-plugin: http://wordpress.org/plugins/host-meta/
 * the `WebFinger`-plugin: http://wordpress.org/plugins/webfinger/
 * the `Salmon`-plugin: http://wordpress.org/plugins/salmon/
-* the `ActivityStream extension`-plugin: http://wordpress.org/plugins/activitystream-extension/
+* the `ActivityStreams`-plugin: http://wordpress.org/plugins/activitystream-extension/
 
 == Installation ==
 
@@ -62,6 +62,10 @@ This plugin bundles a few plugins theta implement parts of the OStatus specifica
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
 
 == Changelog ==
+
+= 2.2.3 =
+
+* add main OStatus feed URL
 
 = 2.2.2 =
 

@@ -7,7 +7,7 @@
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.2.2
+ * Version: 2.2.3
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -108,6 +108,8 @@ class Ostatus {
 	public static function pubsubhubbub_feed_urls( $feeds, $post_id ) {
 		$post = get_post( $post_id );
 		$feeds[] = get_author_feed_link( $post->post_author, 'ostatus' );
+
+		$feeds[] = get_feed_link( 'ostatus' );
 
 		return $feeds;
 	}
