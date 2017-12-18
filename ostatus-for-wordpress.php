@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/pfefferle/wordpress-ostatus
  * Description: A bundle of plugins that turn your blog into your private federated social network.
  * Author: Matthias Pfefferle
- * Author URI: http://notiz.blog/
+ * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Version: 2.3.0
