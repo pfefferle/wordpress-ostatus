@@ -63,6 +63,10 @@ If you are the author of a relevant plugin, or are planning one, contact us to g
 
 ## Changelog ##
 
+### 2.3.1 ###
+
+* htmlspecialchars instead of htmlentities
+
 ### 2.3.0 ###
 
 * nicer feeds
