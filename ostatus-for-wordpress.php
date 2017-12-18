@@ -7,7 +7,7 @@
  * Author URI: http://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.2.3
+ * Version: 2.3.0
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -34,10 +34,6 @@ class Ostatus {
 		add_filter( 'webfinger_user_data', array( 'Ostatus', 'webfinger' ), 10, 3 );
 		add_filter( 'host_meta', array( 'Ostatus', 'host_meta' ) );
 
-		add_action( 'atom_ns', array( 'Ostatus', 'atom_add_namespaces' ) );
-		add_action( 'atom_head', array( 'Ostatus', 'atom_add_global_author' ) );
-		add_action( 'atom_author', array( 'Ostatus', 'atom_add_entry_author' ) );
-
 		add_feed( 'ostatus', array( 'Ostatus', 'do_feed_ostatus' ) );
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
@@ -45,6 +41,12 @@ class Ostatus {
 
 		add_action( 'admin_init', array( 'Ostatus', 'text_domain' ) );
 		add_action( 'admin_menu', array( 'Ostatus', 'admin_menu' ) );
+		add_action( 'admin_init', array( 'Ostatus', 'register_settings' ) );
+
+		add_filter( 'the_excerpt_rss', array( 'Ostatus', 'the_feed_content' ), 99 );
+		add_filter( 'the_title_rss', array( 'Ostatus', 'the_feed_content' ), 99 );
+		add_filter( 'the_content_feed', array( 'Ostatus', 'the_feed_content' ), 99 );
+		add_filter( 'comment_text', array( 'Ostatus', 'the_feed_content' ), 99 );
 	}
 
 	/**
@@ -115,35 +117,6 @@ class Ostatus {
 	}
 
 	/**
-	 * Added PortableContacts namespace
-	 */
-	public static function atom_add_namespaces() {
-		if ( is_author() && is_feed( 'ostatus' ) ) {
-			echo 'xmlns:poco="http://portablecontacts.net/spec/1.0/"' . PHP_EOL;
-			echo 'xmlns:media="http://purl.org/syndication/atommedia/"' . PHP_EOL;
-			echo 'xmlns:ostatus="http://ostatus.org/schema/1.0/"' . PHP_EOL;
-		}
-	}
-
-	/**
-	 * Add global author area to the OStatus Atom feed
-	 */
-	public static function atom_add_global_author() {
-		if ( is_author() && is_feed( 'ostatus' ) ) {
-			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus-author.php' );
-		}
-	}
-
-	/**
-	 * Extend entry author of the OStatus Atom feed
-	 */
-	public static function atom_add_entry_author() {
-		if ( is_author() && is_feed( 'ostatus' ) ) {
-			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus-entry-author.php' );
-		}
-	}
-
-	/**
 	 * Load plugin text domain
 	 */
 	public static function text_domain() {
@@ -175,9 +148,24 @@ class Ostatus {
 	 */
 	public static function do_feed_ostatus( $for_comments ) {
 		if ( $for_comments ) {
-			load_template( ABSPATH . WPINC . '/feed-atom-comments.php' );
+			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus-comments.php' );
 		} else {
-			load_template( ABSPATH . WPINC . '/feed-atom.php' );
+			load_template( dirname( __FILE__ ) . '/templates/feed-ostatus.php' );
 		}
+	}
+
+	public static function the_feed_content( $output ) {
+		if ( is_feed( 'ostatus' ) ) {
+			return htmlentities( $output );
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Register PubSubHubbub settings
+	 */
+	public static function register_settings() {
+		register_setting( 'ostatus', 'ostatus_feed_use_excerpt' );
 	}
 }

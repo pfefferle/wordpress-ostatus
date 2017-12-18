@@ -3,8 +3,8 @@ Contributors: pepijndevos, pfefferle
 Tags: ostatus, federated, mastodon, social, gnusocial, statusnet
 Donate link: http://14101978.de
 Requires at least: 4.5
-Tested up to: 4.8
-Stable tag: 2.2.3
+Tested up to: 4.9.1
+Stable tag: 2.3.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -62,6 +62,11 @@ This plugin bundles a few plugins theta implement parts of the OStatus specifica
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
 
 == Changelog ==
+
+= 2.3.0 =
+
+* nicer feeds
+* enable/disable the feed summary in the settings
 
 = 2.2.3 =
 

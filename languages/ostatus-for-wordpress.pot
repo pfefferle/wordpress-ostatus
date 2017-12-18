@@ -2,10 +2,10 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: OStatus 2.0.0\n"
+"Project-Id-Version: OStatus 2.3.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/ostatus-for-wordpress\n"
-"POT-Creation-Date: 2017-05-01 11:49:43+00:00\n"
+"POT-Creation-Date: 2017-12-18 21:20:12+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,38 +14,55 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
+#: templates/feed-ostatus-comments.php:37
+#. translators: Comments feed title. 1: Post title
+msgid "Comments on %s"
+msgstr ""
+
+#: templates/feed-ostatus-comments.php:40
+#. translators: Comments feed title. 1: Site name, 2: Search query
+msgid "Comments for %1$s searching on %2$s"
+msgstr ""
+
+#: templates/feed-ostatus-comments.php:43
+#. translators: Comments feed title. 1: Site name
+msgid "Comments for %s"
+msgstr ""
+
+#: templates/feed-ostatus-comments.php:91
+#. translators: Individual comment title. 1: Post title, 2: Comment author name
+msgid "Comment on %1$s by %2$s"
+msgstr ""
+
+#: templates/feed-ostatus-comments.php:94
+#. translators: Comment author title. 1: Comment author name
+msgid "By: %s"
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "OStatus"
 msgstr ""
 
-#: templates/admin.php:12
+#: templates/settings-page.php:12
 msgid ""
 "OStatus for WordPress turns your blog into a federated social network.\n"
 "\tThis means you can share and talk to everyone using the OStatus protocol,\n"
-"\tincluding users of Status.net and Identi.ca"
+"\tincluding users of Status.net, Identi.ca and Mastodon"
 msgstr ""
 
-#: templates/admin.php:16
-msgid "Some Links:"
+#: templates/settings-page.php:16
+msgid "Settings"
 msgstr ""
 
-#: templates/admin.php:18
-msgid "w3.org community page"
+#: templates/settings-page.php:28
+msgid "Show feed summary"
 msgstr ""
 
-#: templates/admin.php:19
-msgid "How to OStatus-enable Your Application"
-msgstr ""
-
-#: templates/admin.php:20
-msgid "Give us feedback"
-msgstr ""
-
-#: templates/admin.php:24
+#: templates/settings-page.php:36
 msgid "Dependencies"
 msgstr ""
 
-#: templates/admin.php:26
+#: templates/settings-page.php:38
 msgid ""
 "OStatus is like a <em>Best of OpenWeb Standards</em> and so is this plugin.\n"
 "\tIf there is a plugin available that already implements one of these "
@@ -55,6 +72,22 @@ msgid ""
 "target=\"_blank\">please let us know</a>.\n"
 "\tThe installation is a bit painful, but we think it's much more <em>open "
 "style</em> ;)"
+msgstr ""
+
+#: templates/settings-page.php:70
+msgid "Further readings"
+msgstr ""
+
+#: templates/settings-page.php:72
+msgid "w3.org community page"
+msgstr ""
+
+#: templates/settings-page.php:73
+msgid "How to OStatus-enable Your Application"
+msgstr ""
+
+#: templates/settings-page.php:74
+msgid "Give us feedback"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
