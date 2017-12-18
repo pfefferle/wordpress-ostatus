@@ -7,7 +7,7 @@
  * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.3.0
+ * Version: 2.3.1
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -156,7 +156,7 @@ class Ostatus {
 
 	public static function the_feed_content( $output ) {
 		if ( is_feed( 'ostatus' ) ) {
-			return htmlentities( $output );
+			return htmlspecialchars( $output );
 		}
 
 		return $output;
