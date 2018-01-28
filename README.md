@@ -1,9 +1,9 @@
 # OStatus #
 **Contributors:** pepijndevos, pfefferle  
 **Tags:** ostatus, federated, mastodon, social, gnusocial, statusnet  
-**Donate link:** http://14101978.de  
+**Donate link:** https://notiz.blog/donate/  
 **Requires at least:** 4.5  
-**Tested up to:** 4.9.1  
+**Tested up to:** 4.9.2  
 **Stable tag:** 2.3.1  
 **License:** MIT  
 **License URI:** https://opensource.org/licenses/MIT  
