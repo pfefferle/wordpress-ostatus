@@ -7,7 +7,7 @@
  * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.3.1
+ * Version: 2.3.2
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -38,6 +38,7 @@ class Ostatus {
 		add_action( 'do_feed_ostatus', array( 'Ostatus', 'do_feed_ostatus' ), 10, 1 );
 
 		add_filter( 'pubsubhubbub_feed_urls', array( 'Ostatus', 'pubsubhubbub_feed_urls' ), 10, 2 );
+		add_filter( 'pubsubhubbub_show_discovery', array( 'Ostatus', 'pubsubhubbub_show_discovery' ), 12 );
 
 		add_action( 'admin_init', array( 'Ostatus', 'text_domain' ) );
 		add_action( 'admin_menu', array( 'Ostatus', 'admin_menu' ) );
@@ -114,6 +115,25 @@ class Ostatus {
 		$feeds[] = get_feed_link( 'ostatus' );
 
 		return $feeds;
+	}
+
+	/**
+	 * Enable discovery
+	 *
+	 * @return boolean;
+	 */
+	public static function pubsubhubbub_show_discovery( $show_discovery ) {
+		global $withcomments;
+
+		if ( ! $withcomments ) {
+			$withcomments = 0;
+		}
+
+		if ( is_feed( 'ostatus' ) && ( ( ! is_archive() && ! is_singular() && 0 == $withcomments ) || is_author() ) ) {
+			$show_discovery = true;
+		}
+
+		return $show_discovery;
 	}
 
 	/**

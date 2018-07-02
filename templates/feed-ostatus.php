@@ -49,6 +49,7 @@ do_action( 'rss_tag_pre', 'atom' );
 		<activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
 		<name><?php the_author() ?></name>
 		<summary type="html"><?php echo esc_html( get_the_author_meta( 'description' ) ); ?></summary>
+		<id><?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?></id>
 		<uri><?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?></uri>
 		<email><?php echo esc_html( ostatus_get_acct( get_the_author_meta( 'ID' ) ) ); ?></email>
 		<link rel="alternate" type="text/html" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>" />
