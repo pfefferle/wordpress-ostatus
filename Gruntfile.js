@@ -26,5 +26,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-wp-i18n');
 
   // Default task(s).
-  grunt.registerTask('default', ['wp_readme_to_markdown']);
+  grunt.registerTask('default', ['wp_readme_to_markdown', 'makepot']);
 };

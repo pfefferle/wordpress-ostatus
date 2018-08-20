@@ -2,10 +2,10 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: OStatus 2.3.2\n"
+"Project-Id-Version: OStatus 2.4.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/ostatus-for-wordpress\n"
-"POT-Creation-Date: 2018-07-02 14:46:03+00:00\n"
+"POT-Creation-Date: 2018-08-20 21:14:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,27 +14,74 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: templates/feed-ostatus-comments.php:37
+#: includes/class-ostatus-admin.php:45
+msgid "Overview"
+msgstr ""
+
+#: includes/class-ostatus-admin.php:47
+msgid ""
+"OStatus lets people on different social networks follow each other. It "
+"applies a group of related protocols (PubSubHubbub, ActivityStreams, "
+"Salmon, Portable Contacts, and Webfinger) to this problem in what we "
+"believe is a simple and obvious way."
+msgstr ""
+
+#: includes/class-ostatus-admin.php:48
+msgid ""
+"OStatus is a minimal specification for distributed status updates or "
+"microblogging. Many social applications can be modelled with status "
+"updates, however. Practically any software that generates RSS or Atom feeds "
+"could be OStatus-enabled. Travel networks, event invitation systems, wikis, "
+"photo-sharing systems, social news sites, social music sites, podcasting "
+"servers, blogs, version control systems, and general purpose social "
+"networks would all be candidates for OStatus use."
+msgstr ""
+
+#: includes/class-ostatus-admin.php:53
+msgid "For more information:"
+msgstr ""
+
+#: includes/class-ostatus-admin.php:54
+msgid "<a href=\"https://www.w3.org/community/ostatus/\">W3C community page</a>"
+msgstr ""
+
+#: includes/class-ostatus-admin.php:55
+msgid ""
+"<a href=\"https://www.w3.org/community/ostatus/wiki/Howto\">How to "
+"OStatus-enable Your Application</a>"
+msgstr ""
+
+#: includes/class-ostatus-admin.php:56
+msgid ""
+"<a href=\"https://github.com/pfefferle/wordpress-ostatus/issues\">Give us "
+"feedback</a>"
+msgstr ""
+
+#: includes/class-ostatus-admin.php:57
+msgid "<a href=\"https:/notiz.blog/donate\">Donate</a>"
+msgstr ""
+
+#: templates/feed-ostatus-comments.php:36
 #. translators: Comments feed title. 1: Post title
 msgid "Comments on %s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:40
+#: templates/feed-ostatus-comments.php:39
 #. translators: Comments feed title. 1: Site name, 2: Search query
 msgid "Comments for %1$s searching on %2$s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:43
+#: templates/feed-ostatus-comments.php:42
 #. translators: Comments feed title. 1: Site name
 msgid "Comments for %s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:91
+#: templates/feed-ostatus-comments.php:90
 #. translators: Individual comment title. 1: Post title, 2: Comment author name
 msgid "Comment on %1$s by %2$s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:94
+#: templates/feed-ostatus-comments.php:93
 #. translators: Comment author title. 1: Comment author name
 msgid "By: %s"
 msgstr ""
@@ -43,51 +90,33 @@ msgstr ""
 msgid "OStatus"
 msgstr ""
 
-#: templates/settings-page.php:12
+#: templates/settings-page.php:4
 msgid ""
-"OStatus for WordPress turns your blog into a federated social network.\n"
-"\tThis means you can share and talk to everyone using the OStatus protocol,\n"
-"\tincluding users of Status.net, Identi.ca and Mastodon"
+"OStatus for WordPress turns your blog into a federated social network. This "
+"means you can share and talk to everyone using the OStatus protocol, "
+"including users of Status.net, Identi.ca and Mastodon."
 msgstr ""
 
-#: templates/settings-page.php:16
+#: templates/settings-page.php:6
 msgid "Settings"
 msgstr ""
 
-#: templates/settings-page.php:28
+#: templates/settings-page.php:18
 msgid "Show feed summary"
 msgstr ""
 
-#: templates/settings-page.php:36
+#: templates/settings-page.php:25
 msgid "Dependencies"
 msgstr ""
 
-#: templates/settings-page.php:38
+#: templates/settings-page.php:27
 msgid ""
-"OStatus is like a <em>Best of OpenWeb Standards</em> and so is this plugin.\n"
-"\tIf there is a plugin available that already implements one of these "
-"standards, we will use/support it.\n"
-"\tIf we are missing one, <a "
+"OStatus is like a <em>Best of OpenWeb Standards</em> and so is this plugin. "
+"If there is a plugin available that already implements one of these "
+"standards, we will use/support it. If we are missing one, <a "
 "href=\"https://github.com/pfefferle/wordpress-ostatus/issues\" "
-"target=\"_blank\">please let us know</a>.\n"
-"\tThe installation is a bit painful, but we think it's much more <em>open "
-"style</em> ;)"
-msgstr ""
-
-#: templates/settings-page.php:70
-msgid "Further readings"
-msgstr ""
-
-#: templates/settings-page.php:72
-msgid "w3.org community page"
-msgstr ""
-
-#: templates/settings-page.php:73
-msgid "How to OStatus-enable Your Application"
-msgstr ""
-
-#: templates/settings-page.php:74
-msgid "Give us feedback"
+"target=\"_blank\">please let us know</a>. The installation is a bit "
+"painful, but we think it's much more <em>open style</em> ;)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

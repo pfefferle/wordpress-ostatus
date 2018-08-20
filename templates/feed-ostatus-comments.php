@@ -28,8 +28,7 @@ do_action( 'rss_tag_pre', 'atom-comments' );
 		 * @since 2.8.0
 		 */
 		do_action( 'atom_comments_ns' );
-	?>
->
+	?>>
 	<title type="text">
 	<?php
 	if ( is_singular() ) {
@@ -93,17 +92,17 @@ if ( have_comments() ) :
 			/* translators: Comment author title. 1: Comment author name */
 			printf( ent2ncr( __( 'By: %s' ) ), get_comment_author_rss() );
 		}
-			?>
-			</title>
-			<link rel="alternate" href="<?php comment_link(); ?>" type="<?php bloginfo_rss( 'html_type' ); ?>" />
+		?>
+		</title>
+		<link rel="alternate" href="<?php comment_link(); ?>" type="<?php bloginfo_rss( 'html_type' ); ?>" />
 
 		<author>
 			<name><?php comment_author_rss(); ?></name>
 			<?php
 			if ( get_comment_author_url() ) {
-				echo '<uri>' . get_comment_author_url() . '</uri>';}
-?>
-
+				echo '<uri>' . get_comment_author_url() . '</uri>';
+			}
+			?>
 		</author>
 
 		<id><?php comment_guid(); ?></id>

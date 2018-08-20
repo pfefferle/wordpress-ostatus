@@ -3,8 +3,8 @@ Contributors: pepijndevos, pfefferle
 Tags: ostatus, federated, mastodon, social, gnusocial, statusnet
 Donate link: https://notiz.blog/donate/
 Requires at least: 4.5
-Tested up to: 4.9.6
-Stable tag: 2.3.2
+Tested up to: 4.9.8
+Stable tag: 2.4.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -62,6 +62,11 @@ This plugin bundles a few plugins theta implement parts of the OStatus specifica
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
 
 == Changelog ==
+
+= 2.4.0 =
+
+* complete refactoring
+* better text encoding
 
 = 2.3.2 =
 
