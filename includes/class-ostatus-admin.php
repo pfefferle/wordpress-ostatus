@@ -54,7 +54,7 @@ class Ostatus_Admin {
 			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/">W3C community page</a>', 'ostatus-for-wordpress' ) . '</p>' .
 			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/wiki/Howto">How to OStatus-enable Your Application</a>', 'ostatus-for-wordpress' ) . '</p>' .
 			'<p>' . __( '<a href="https://github.com/pfefferle/wordpress-ostatus/issues">Give us feedback</a>', 'ostatus-for-wordpress' ) . '</p>' .
-			'<p>' . __( '<a href="https:/notiz.blog/donate">Donate</a>', 'ostatus-for-wordpress' ) . '</p>'
+			'<p>' . __( '<a href="https://notiz.blog/donate">Donate</a>', 'ostatus-for-wordpress' ) . '</p>'
 		);
 	}
 }
