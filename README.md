@@ -1,5 +1,5 @@
 # OStatus #
-**Contributors:** pepijndevos, pfefferle  
+**Contributors:** [pepijndevos](https://profiles.wordpress.org/pepijndevos), [pfefferle](https://profiles.wordpress.org/pfefferle)  
 **Tags:** ostatus, federated, mastodon, social, gnusocial, statusnet  
 **Donate link:** https://notiz.blog/donate/  
 **Requires at least:** 4.5  
