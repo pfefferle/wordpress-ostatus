@@ -7,7 +7,7 @@
  * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.4.1
+ * Version: 2.5.0
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -15,10 +15,14 @@
 // support the legacy WebFinger specs
 define( 'WEBFINGER_LEGACY', true );
 
+// flush rewrite rules
+register_activation_hook( __FILE__, 'ostatus_flush_rewrite_rules' );
+register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
+
 /**
  * Initialize the plugin, registering WordPress hooks.
  */
-function init() {
+function ostatus_init() {
 	require_once dirname( __FILE__ ) . '/includes/functions.php';
 
 	load_plugin_textdomain( 'ostatus-for-wordpress' );
@@ -43,4 +47,13 @@ function init() {
 	add_filter( 'the_content_feed', array( 'Ostatus_Feed', 'the_feed_content' ), 99 );
 	add_filter( 'comment_text', array( 'Ostatus_Feed', 'the_feed_content' ), 99 );
 }
-add_action( 'plugins_loaded', 'init' );
+add_action( 'plugins_loaded', 'ostatus_init' );
+
+/**
+ * Flush rewrite rules
+ */
+function ostatus_flush_rewrite_rules() {
+	require_once dirname( __FILE__ ) . '/includes/class-ostatus-feed.php';
+	Ostatus_Feed::add_ostatus_feed();
+	flush_rewrite_rules();
+}

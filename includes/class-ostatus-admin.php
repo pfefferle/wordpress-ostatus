@@ -7,28 +7,45 @@ class Ostatus_Admin {
 	 * Add admin menu entry
 	 */
 	public static function admin_menu() {
-		$options_page = add_options_page(
+		$settings_page = add_menu_page(
 			'OStatus',
 			'OStatus',
 			'manage_options',
 			'ostatus',
-			array( 'Ostatus_Admin', 'settings_page' )
+			array( 'Ostatus_Admin', 'settings_page' ),
+			plugins_url( 'static/ostatus_icon.png', dirname( __FILE__ ) )
 		);
 
-		add_action( 'load-' . $options_page, array( 'Ostatus_Admin', 'add_help_tab' ) );
+		$dependencies_page = add_submenu_page(
+			'ostatus',
+			__( 'Dependencies', 'ostatus-for-wordpress' ),
+			__( 'Dependencies', 'ostatus-for-wordpress' ),
+			'manage_options',
+			'ostatus-dependencies',
+			array( 'Ostatus_Admin', 'dependencies_page' )
+		);
+
+		add_action( 'load-' . $settings_page, array( 'Ostatus_Admin', 'add_help_tab' ) );
 	}
 
 	/**
 	 * Load settings page
 	 */
 	public static function settings_page() {
+		load_template( dirname( __FILE__ ) . '/../templates/settings-page.php' );
+	}
+
+	/**
+	 * Load settings page
+	 */
+	public static function dependencies_page() {
 		require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 		wp_enqueue_style( 'plugin-install' );
 		wp_enqueue_script( 'plugin-install' );
 		add_thickbox();
 		$GLOBALS['tab'] = 'custom';
 
-		load_template( dirname( __FILE__ ) . '/../templates/settings-page.php' );
+		load_template( dirname( __FILE__ ) . '/../templates/dependencies-page.php' );
 	}
 
 	/**
@@ -54,6 +71,7 @@ class Ostatus_Admin {
 			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/">W3C community page</a>', 'ostatus-for-wordpress' ) . '</p>' .
 			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/wiki/Howto">How to OStatus-enable Your Application</a>', 'ostatus-for-wordpress' ) . '</p>' .
 			'<p>' . __( '<a href="https://github.com/pfefferle/wordpress-ostatus/issues">Give us feedback</a>', 'ostatus-for-wordpress' ) . '</p>' .
+			'<hr />' .
 			'<p>' . __( '<a href="https://notiz.blog/donate">Donate</a>', 'ostatus-for-wordpress' ) . '</p>'
 		);
 	}

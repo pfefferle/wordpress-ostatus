@@ -19,8 +19,8 @@ class Ostatus_Feed {
 	 */
 	public static function pubsubhubbub_feed_urls( $feeds, $post_id ) {
 		$post = get_post( $post_id );
-		$feeds[] = get_author_feed_link( $post->post_author, 'ostatus' );
 
+		$feeds[] = get_author_feed_link( $post->post_author, 'ostatus' );
 		$feeds[] = get_feed_link( 'ostatus' );
 
 		return $feeds;
@@ -58,7 +58,7 @@ class Ostatus_Feed {
 
 	public static function the_feed_content( $output ) {
 		if ( is_feed( 'ostatus' ) ) {
-			return htmlspecialchars( html_entity_decode( $output ), ENT_COMPAT | ENT_HTML401, "UTF-8", false );
+			return htmlspecialchars( html_entity_decode( $output ), ENT_COMPAT | ENT_HTML401, 'UTF-8', false );
 		}
 
 		return $output;
