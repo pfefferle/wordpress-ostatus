@@ -15,9 +15,9 @@ do_action( 'rss_tag_pre', 'atom-comments' );
 	xmlns="http://www.w3.org/2005/Atom"
 	xml:lang="<?php bloginfo_rss( 'language' ); ?>"
 	xmlns:thr="http://purl.org/syndication/thread/1.0"
-	xmlns:poco="http://portablecontacts.net/spec/1.0/"
-	xmlns:media="http://purl.org/syndication/atommedia/"
-	xmlns:ostatus="http://ostatus.org/schema/1.0/"
+	xmlns:poco="http://portablecontacts.net/spec/1.0"
+	xmlns:media="http://purl.org/syndication/atommedia"
+	xmlns:ostatus="http://ostatus.org/schema/1.0"
 	<?php
 		/** This action is documented in wp-includes/feed-atom.php */
 		do_action( 'atom_ns' );

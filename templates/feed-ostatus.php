@@ -18,9 +18,9 @@ do_action( 'rss_tag_pre', 'atom' );
 	xmlns:thr="http://purl.org/syndication/thread/1.0"
 	xml:lang="<?php bloginfo_rss( 'language' ); ?>"
 	xml:base="<?php bloginfo_rss( 'url' ); ?>/wp-atom.php"
-	xmlns:poco="http://portablecontacts.net/spec/1.0/"
-	xmlns:media="http://purl.org/syndication/atommedia/"
-	xmlns:ostatus="http://ostatus.org/schema/1.0/"
+	xmlns:poco="http://portablecontacts.net/spec/1.0"
+	xmlns:media="http://purl.org/syndication/atommedia"
+	xmlns:ostatus="http://ostatus.org/schema/1.0"
 	<?php
 	/**
 	 * Fires at end of the Atom feed root to add namespaces.
