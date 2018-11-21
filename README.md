@@ -4,7 +4,7 @@
 **Donate link:** https://notiz.blog/donate/  
 **Requires at least:** 4.5  
 **Tested up to:** 4.9.9  
-**Stable tag:** 2.5.0  
+**Stable tag:** 2.5.1  
 **License:** MIT  
 **License URI:** https://opensource.org/licenses/MIT  
 
@@ -35,7 +35,12 @@ Compatibility:
 	* [x] Share Mastodon-comments
 	* [ ] Share blog-comments
 * Friendica
-	* not tested yet
+	* [x] Follow blog
+	* [ ] Follow Mastodon
+	* [x] Share blog-posts
+	* [ ] Share Mastodon-posts
+	* [x] Share Friendica-comments
+	* [ ] Share blog-comments
 
 Plugin requirements:
 
@@ -62,6 +67,10 @@ This plugin bundles a few plugins theta implement parts of the OStatus specifica
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
 
 ## Changelog ##
+
+### 2.5.1 ###
+
+* Fixed feed-ids
 
 ### 2.5.0 ###
 

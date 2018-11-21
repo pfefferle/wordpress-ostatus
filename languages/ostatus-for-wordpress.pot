@@ -2,10 +2,10 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: OStatus 2.5.0\n"
+"Project-Id-Version: OStatus 2.5.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-ostatus\n"
-"POT-Creation-Date: 2018-10-09 21:29:36+00:00\n"
+"POT-Creation-Date: 2018-11-21 06:58:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -94,12 +94,12 @@ msgstr ""
 msgid "Comments for %s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:90
+#: templates/feed-ostatus-comments.php:88
 #. translators: Individual comment title. 1: Post title, 2: Comment author name
 msgid "Comment on %1$s by %2$s"
 msgstr ""
 
-#: templates/feed-ostatus-comments.php:93
+#: templates/feed-ostatus-comments.php:91
 #. translators: Comment author title. 1: Comment author name
 msgid "By: %s"
 msgstr ""

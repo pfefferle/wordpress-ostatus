@@ -45,20 +45,18 @@ do_action( 'rss_tag_pre', 'atom-comments' );
 	</title>
 	<subtitle type="text"><?php bloginfo_rss( 'description' ); ?></subtitle>
 
-	<updated>
-	<?php
+	<updated><?php
 		$date = get_lastcommentmodified( 'GMT' );
 		echo $date ? mysql2date( 'Y-m-d\TH:i:s\Z', $date, false ) : date( 'Y-m-d\TH:i:s\Z' );
-	?>
-	</updated>
+	?></updated>
 
 <?php if ( is_singular() ) { ?>
 	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php comments_link_feed(); ?>" />
 	<link rel="self" type="application/atom+xml" href="<?php echo esc_url( get_post_comments_feed_link( '', 'atom' ) ); ?>" />
-	<id><?php echo esc_url( get_post_comments_feed_link( '', 'atom' ) ); ?></id>
+	<id><?php echo esc_url( get_post_comments_feed_link( '', 'ostatus' ) ); ?></id>
 <?php } elseif ( is_search() ) { ?>
 	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php echo home_url() . '?s=' . get_search_query(); ?>" />
-	<link rel="self" type="application/atom+xml" href="<?php echo get_search_comments_feed_link( '', 'atom' ); ?>" />
+	<link rel="self" type="application/atom+xml" href="<?php echo get_search_comments_feed_link( '', 'ostatus' ); ?>" />
 	<id><?php echo get_search_comments_feed_link( '', 'atom' ); ?></id>
 <?php } else { ?>
 	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php bloginfo_rss( 'url' ); ?>" />
