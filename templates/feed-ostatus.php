@@ -38,11 +38,12 @@ do_action( 'rss_tag_pre', 'atom' );
 		echo $date ? mysql2date( 'Y-m-d\TH:i:s\Z', $date, false ) : date( 'Y-m-d\TH:i:s\Z' );
 	?></updated>
 
-	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php bloginfo_rss( 'url' ); ?>" />
 	<id><?php self_link(); ?></id>
 	<link rel="self" type="application/atom+xml" href="<?php self_link(); ?>" />
 
 	<?php if ( is_author() ) : ?>
+	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>" />
+
 	<author>
 		<activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
 		<name><?php the_author() ?></name>
@@ -59,6 +60,8 @@ do_action( 'rss_tag_pre', 'atom' );
 		<poco:displayName><?php the_author() ?></poco:displayName>
 		<poco:note><?php echo wp_strip_all_tags( get_the_author_meta( 'description' ) ); ?></poco:note>
 	</author>
+	<?php else: ?>
+	<link rel="alternate" type="<?php bloginfo_rss( 'html_type' ); ?>" href="<?php bloginfo_rss( 'url' ); ?>" />
 	<?php endif; ?>
 
 	<?php
