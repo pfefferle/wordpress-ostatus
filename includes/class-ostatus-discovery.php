@@ -38,4 +38,60 @@ class Ostatus_Discovery {
 
 		return $array;
 	}
+
+	/**
+	 * Extend NodeInfo data
+	 *
+	 * @param array $nodeinfo NodeInfo data
+	 * @param array $version  updated data
+	 */
+	public static function nodeinfo( $nodeinfo, $version ) {
+		if ( '2.0' == $version) {
+			$nodeinfo['protocols'][] = 'ostatus';
+		} else {
+			$nodeinfo['protocols']['inbound'] = array_merge(
+				$nodeinfo['services']['inbound'],
+				array( 'friendica', 'gnusocial', 'mastodon' )
+			);
+
+			$nodeinfo['protocols']['outbound'] = array_merge(
+				$nodeinfo['services']['outbound'],
+				array( 'friendica', 'gnusocial', 'mastodon' )
+			);
+		}
+
+		$nodeinfo['services']['inbound'] = array_merge(
+			$nodeinfo['services']['inbound'],
+			array( 'friendica', 'gnusocial', 'mastodon' )
+		);
+
+		$nodeinfo['services']['outbound'] = array_merge(
+			$nodeinfo['services']['outbound'],
+			array( 'friendica', 'gnusocial', 'mastodon' )
+		);
+
+		return $nodeinfo;
+	}
+
+	/**
+	 * Extend NodeInfo2 data
+	 *
+	 * @param array $nodeinfo NodeInfo2 data
+	 * @param array $version  updated data
+	 */
+	public static function nodeinfo2( $nodeinfo ) {
+		$nodeinfo['protocols'][] = 'ostatus';
+
+		$nodeinfo['services']['inbound'] = array_merge(
+			$nodeinfo['services']['inbound'],
+			array( 'friendica', 'gnusocial', 'mastodon' )
+		);
+
+		$nodeinfo['services']['outbound'] = array_merge(
+			$nodeinfo['services']['outbound'],
+			array( 'friendica', 'gnusocial', 'mastodon' )
+		);
+
+		return $nodeinfo;
+	}
 }

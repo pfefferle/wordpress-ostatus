@@ -11,6 +11,7 @@
 		'pubsubhubbub',
 		'salmon',
 		'webfinger',
+		'nodeinfo',
 	) );
 
 	foreach ( $required_plugins as $plugin ) {

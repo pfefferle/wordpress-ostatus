@@ -7,7 +7,7 @@
  * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
- * Version: 2.5.3
+ * Version: 2.5.4
  * Text Domain: ostatus-for-wordpress
  * Domain Path: /languages
  */
@@ -34,6 +34,8 @@ function ostatus_init() {
 	require_once dirname( __FILE__ ) . '/includes/class-ostatus-discovery.php';
 	add_filter( 'webfinger_user_data', array( 'Ostatus_Discovery', 'webfinger' ), 10, 3 );
 	add_filter( 'host_meta', array( 'Ostatus_Discovery', 'host_meta' ) );
+	add_filter( 'nodeinfo_data', array( 'Ostatus_Discovery', 'nodeinfo' ), 10, 2 );
+	add_filter( 'nodeinfo2_data', array( 'Ostatus_Discovery', 'nodeinfo2' ), 10 );
 
 	require_once dirname( __FILE__ ) . '/includes/class-ostatus-feed.php';
 	add_action( 'init', array( 'Ostatus_Feed', 'add_ostatus_feed' ) );
