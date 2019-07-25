@@ -3,8 +3,8 @@
 **Tags:** ostatus, federated, mastodon, social, gnusocial, statusnet  
 **Donate link:** https://notiz.blog/donate/  
 **Requires at least:** 4.5  
-**Tested up to:** 4.9.9  
-**Stable tag:** 2.5.4  
+**Tested up to:** 5.2.2  
+**Stable tag:** 2.5.5  
 **License:** MIT  
 **License URI:** https://opensource.org/licenses/MIT  
 
@@ -21,26 +21,8 @@ This plugin bundles a few other plugins it requires to work, theses are installe
 Compatibility:
 
 * GNU.social
-	* [x] Follow blog
-	* [ ] Follow GNU.social
-	* [x] Share blog-posts
-	* [ ] Share GNU.social-posts
-	* [x] Share GNU.social-comments
-	* [ ] Share blog-comments
 * Mastodon
-	* [x] Follow blog
-	* [ ] Follow Mastodon
-	* [x] Share blog-posts
-	* [ ] Share Mastodon-posts
-	* [x] Share Mastodon-comments
-	* [ ] Share blog-comments
 * Friendica
-	* [x] Follow blog
-	* [ ] Follow Mastodon
-	* [x] Share blog-posts
-	* [ ] Share Mastodon-posts
-	* [x] Share Friendica-comments
-	* [ ] Share blog-comments
 
 Plugin requirements:
 
@@ -67,6 +49,10 @@ This plugin bundles a few plugins theta implement parts of the OStatus specifica
 If you are the author of a relevant plugin, or are planning one, contact us to get it included in this bundle.
 
 ## Changelog ##
+
+### 2.5.5 ###
+
+* update requirements
 
 ### 2.5.4 ###
 
