@@ -13,6 +13,7 @@ env:
     - WP_VERSION=nightly WP_MULTISITE=0
 
   global:
+    - WP_TRAVISCI=travis:phpunit
     - SVN_REPO: https://plugins.svn.wordpress.org/ostatus-for-wordpress/
     - GH_REF: https://github.com/pfefferle/wordpress-ostatus.git
     - secure: "BYrX7r4C+WuDaJddrfJPqMkMOsX1oU2Jdk5VznRnITpeH+i6zayXNBA9G+p7n68CnolpLkEFbhW9YcgrHvVOIZD6J/MaX9P8R/NK7p5pV4X8p+qa9Z3VriPLAhwNc/1A61+34hIQCCW9JSmcYCuT7fEhX/brhlrzHxPPdFqPZOfU/UacObrP9eV3/vInTWgrLH8wdXDC4JUNAmWA6V1ILfWH29tlc3O/M81RCCX3Np3fRWu15dLiN/8fAQZ9ItEhMs47HOcEpKOtZal/tzcV2pHUbXZsO73/NpuRLcASGHMZwBqyZaRG1CnfFo7bEBveZeCI0AVfIQ5mrn/3pt4mIrHMf20wamlfU9fR//MWGTUgn0JplZFvgG/cKF4KUpqfp5eSBlxTxyAWM8HJVd00hAVPDQbkYCRwxa5Q9T4tzIq0djKejrER6/p9xvTdO7S6cUfT7u48zsN6oil7hjfcix2WKyv0SOV2jHMXARvT/gb2Viq4a3YGFFVvcuiBLJS54GJmxsqcChhC8e+mXM5pn+sCeu4fFflLyERSFQdmktOyE3fz+zhxjl3fEFP1jBT3GpxkdQpde+HQKLaeTNJMGtgLuInR9mmp+5c83IpL6N4a3aHW1u7hhY+HVMMtKkvE6J2zTwIATJs5siUlATO8YJcFUAufVJPfa7CeZpY40uY="
@@ -27,71 +28,70 @@ matrix:
       env: WP_PULUGIN_DEPLOY=1
 
 before_script:
-  - |
-    # Remove Xdebug for a huge performance increase:
-    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
-      phpenv config-rm xdebug.ini
-    else
-      echo "xdebug.ini does not exist"
-    fi
-  - |
-    # Export Composer's global bin dir to PATH:
-    composer config --list --global
-    export PATH=`composer config --list --global | grep '\[home\]' | { read a; echo "${a#* }/vendor/bin:$PATH"; }`
-  - |
-    # Install the specified version of PHPUnit depending on the PHP version:
-    if [[ "$WP_TRAVISCI" == "travis:phpunit" ]]; then
-      case "$TRAVIS_PHP_VERSION" in
-        7.3|7.2|7.1|7.0|nightly)
-          echo "Using PHPUnit 6.x"
-          composer global require "phpunit/phpunit:^6"
-          ;;
-        5.6)
-          echo "Using PHPUnit 4.x"
-          composer global require "phpunit/phpunit:^4"
-          ;;
-        *)
-          echo "No PHPUnit version handling for PHP version $TRAVIS_PHP_VERSION"
-          exit 1
-          ;;
-      esac
-    fi
-    if [[ "$WP_TRAVISCI" == "travis:phpcs" ]] ; then
-        composer install
-    fi
-  - mysql --version
-  - phpenv versions
-  - php --version
-  - php -m
-  - which phpunit
-  - phpunit --version
-  - curl --version
-  - grunt --version
-  - git --version
-  - svn --version
-  - locale -a
-
+- |
+  # Remove Xdebug for a huge performance increase:
+  if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
+    phpenv config-rm xdebug.ini
+  else
+    echo "xdebug.ini does not exist"
+  fi
+- |
+  # Export Composer's global bin dir to PATH:
+  composer config --list --global
+  export PATH=`composer config --list --global | grep '\[home\]' | { read a; echo "${a#* }/vendor/bin:$PATH"; }`
+- |
+  # Install the specified version of PHPUnit depending on the PHP version:
+  if [[ "$WP_TRAVISCI" == "travis:phpunit" ]]; then
+    case "$TRAVIS_PHP_VERSION" in
+      7.3|7.2|7.1|7.0|nightly)
+        echo "Using PHPUnit 6.x"
+        composer global require "phpunit/phpunit:^6"
+        ;;
+      5.6|5.5|5.4|5.3)
+        echo "Using PHPUnit 4.x"
+        composer global require "phpunit/phpunit:^4"
+        ;;
+      *)
+        echo "No PHPUnit version handling for PHP version $TRAVIS_PHP_VERSION"
+        exit 1
+        ;;
+    esac
+  fi
+  if [[ "$WP_TRAVISCI" == "travis:phpcs" ]] ; then
+      composer install
+  fi
+- mysql --version
+- phpenv versions
+- php --version
+- php -m
+- which phpunit
+- phpunit --version
+- curl --version
+- grunt --version
+- git --version
+- svn --version
+- locale -a
 before_install:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      set -e
-      bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-      set +e
-    fi
+- export PATH="$HOME/.composer/vendor/bin:$PATH"
+- |
+  if [[ ! -z "$WP_VERSION" ]] ; then
+    set -e
+    bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+    set +e
+  fi
 script:
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      # Run the build because otherwise there will be a bunch of warnings about
-      # failed `stat` calls from `filemtime()`.
-      echo Running with the following versions:
-      php -v
-      phpunit --version
-      # Run PHPUnit tests
-      phpunit || exit 1
-      WP_MULTISITE=1 phpunit || exit 1
-    fi
-  - |
-    if [[ "$WP_TRAVISCI" == "travis:phpcs" ]] ; then
-      ./vendor/bin/phpcs -p -s -v -n --standard=./phpcs.xml --extensions=php
-    fi
+- |
+  if [[ ! -z "$WP_VERSION" ]] ; then
+    # Run the build because otherwise there will be a bunch of warnings about
+    # failed `stat` calls from `filemtime()`.
+    echo Running with the following versions:
+    php -v
+    phpunit --version
+    # Run PHPUnit tests
+    phpunit || exit 1
+    WP_MULTISITE=1 phpunit || exit 1
+  fi
+- |
+  if [[ "$WP_TRAVISCI" == "travis:phpcs" ]] ; then
+    ./vendor/bin/phpcs -p -s -v -n --standard=./phpcs.ruleset.xml --extensions=php
+  fi
